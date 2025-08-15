@@ -1,0 +1,296 @@
+python
+java
+javascript
+typescript
+react
+angular
+vue
+nodejs
+html
+css
+scss
+sass
+bootstrap
+tailwind
+jquery
+php
+ruby
+c++
+c#
+go
+rust
+swift
+kotlin
+dart
+flutter
+react native
+sql
+mysql
+postgresql
+mongodb
+redis
+elasticsearch
+docker
+kubernetes
+aws
+azure
+gcp
+google cloud
+jenkins
+git
+github
+gitlab
+bitbucket
+linux
+ubuntu
+centos
+windows
+macos
+bash
+powershell
+terraform
+ansible
+puppet
+chef
+vagrant
+nginx
+apache
+microservices
+rest api
+restful
+graphql
+soap
+json
+xml
+yaml
+api development
+web development
+mobile development
+frontend development
+backend development
+full stack development
+devops
+ci/cd
+continuous integration
+continuous deployment
+agile
+scrum
+kanban
+jira
+confluence
+slack
+teams
+zoom
+project management
+team leadership
+machine learning
+deep learning
+artificial intelligence
+data science
+data analysis
+big data
+hadoop
+spark
+kafka
+tableau
+power bi
+r
+matlab
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+plotly
+jupyter
+anaconda
+tensorflow
+pytorch
+keras
+scikit-learn
+opencv
+nlp
+natural language processing
+computer vision
+neural networks
+convolutional neural networks
+recurrent neural networks
+reinforcement learning
+statistics
+probability
+linear algebra
+calculus
+regression
+classification
+clustering
+decision trees
+random forest
+svm
+support vector machines
+naive bayes
+k-means
+pca
+principal component analysis
+feature engineering
+model deployment
+mlops
+apache airflow
+kubeflow
+mlflow
+dvc
+data engineering
+etl
+data warehousing
+data pipeline
+data modeling
+database design
+web scraping
+automation
+testing
+unit testing
+integration testing
+system testing
+performance testing
+load testing
+security testing
+penetration testing
+owasp
+cybersecurity
+information security
+network security
+cloud security
+encryption
+ssl
+tls
+oauth
+jwt
+authentication
+authorization
+firebase
+supabase
+stripe
+payment integration
+e-commerce
+cms
+content management
+wordpress
+drupal
+shopify
+magento
+seo
+search engine optimization
+digital marketing
+social media marketing
+email marketing
+google analytics
+google ads
+facebook ads
+adobe photoshop
+adobe illustrator
+figma
+sketch
+invision
+wireframing
+prototyping
+ui design
+ux design
+user experience
+user interface
+responsive design
+cross-browser compatibility
+accessibility
+wcag
+performance optimization
+code review
+version control
+debugging
+troubleshooting
+problem solving
+analytical thinking
+communication skills
+teamwork
+collaboration
+mentoring
+training
+documentation
+technical writing
+presentation skills
+leadership
+innovation
+creativity
+adaptability
+time management
+multitasking
+attention to detail
+critical thinking
+customer service
+client management
+stakeholder management
+business analysis
+requirements gathering
+system analysis
+solution architecture
+software architecture
+design patterns
+solid principles
+clean code
+refactoring
+code optimization
+scalability
+reliability
+maintainability
+security
+best practices
+coding standards
+peer programming
+pair programming
+code mentoring
+technical leadership
+cross-functional collaboration
+vendor management
+budget management
+resource planning
+capacity planning
+risk management
+change management
+incident management
+disaster recovery
+backup strategies
+monitoring
+logging
+alerting
+observability
+metrics
+kpis
+reporting
+dashboard creation
+data visualization
+business intelligence
+market research
+competitive analysis
+product management
+product development
+product strategy
+roadmap planning
+feature prioritization
+user research
+user testing
+a/b testing
+conversion optimization
+growth hacking
+startup experience
+enterprise experience
+consulting
+freelancing
+remote work
+international experience
+multilingual
+public speaking
+conference speaking
+open source contribution
+community involvement
+certification
+training
+continuous learning
+industry knowledge
+domain expertise

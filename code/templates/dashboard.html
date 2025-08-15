@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Your Dashboard - ResumeRank{% endblock %}
+
+{% block content %}
+<main class="static-page dashboard">
+    <div class="content-wrapper-full">
+        <h1>Dashboard</h1>
+        
+        {% if jobs %}
+            <p>Here are your recently created processing jobs. You have {{ jobs|length }} job(s) saved.</p>
+            {% for job in jobs %}
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <h2>{{ job.title }}</h2>
+                    </div>
+                    {% if job.candidates %}
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Contact</th>
+                                        <th>Experience</th>
+                                        <th>Education</th>
+                                        <th>CGPA</th>
+                                        <th>Skill Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for candidate in job.candidates|sort(attribute='score', reverse=True) %}
+                                    <tr>
+                                        <td>{{ candidate.name }}<br><small>{{ candidate.filename }}</small></td>
+                                        <td class="contact-cell">
+                                            {% if candidate.email %}<div><strong>Email:</strong> {{ candidate.email }}</div>{% endif %}
+                                            {% if candidate.phone %}<div><strong>Phone:</strong> {{ candidate.phone }}</div>{% endif %}
+                                        </td>
+                                        <td>{{ candidate.experience }} yrs</td>
+                                        <td>{{ candidate.education }}</td>
+                                        <td>{{ candidate.cgpa if candidate.cgpa > 0 else 'N/A' }}</td>
+                                        <td>{{ candidate.score|round(1) }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="no-candidates">No candidates have been shortlisted for this job yet.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>You haven't processed any resumes yet. Go to the <a href="{{ url_for('index') }}">Rank Resumes</a> page to get started!</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
+
+<!-- Rankings Table for persistent resume ranking display -->
+<div class="content-wrapper-full">
+    <h2>Last Resume Rankings</h2>
+    <div class="table-container">
+        <table id="rankings-table" class="data-table">
+            <!-- Rankings will be dynamically inserted here by JS -->
+        </table>
+    </div>
+</div>

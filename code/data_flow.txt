@@ -1,0 +1,3 @@
+Upload Resumes → Extract Skills (Fixed + Discovered) → Combine All Skills → 
+Store in Session → Provide to Frontend → Use for Initial Ranking → 
+Available for Re-ranking → Maintain Throughout Session

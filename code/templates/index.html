@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}Rank Resumes - ResumeRank{% endblock %}
+{% block content %}
+<main>
+    <div class="content-wrapper" style="margin-bottom: 1.5rem;">
+        <button id="new-ranking-btn" class="btn btn-secondary" style="display:none;">Start New Ranking</button>
+    </div>
+    <div class="content-wrapper">
+        <div class="main-content">
+            <section class="upload-section">
+                <h2 class="section-title">Upload Resumes</h2>
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <img src="{{ url_for('static', filename='img/upload-icon.svg') }}" alt="Upload icon" class="upload-icon">
+                        <p class="drop-zone-prompt">Drop resumes here or <span class="browse-link">click to browse</span></p>
+                    </div>
+                    <input type="file" id="file-input" accept=".pdf" multiple style="display: none;">
+                </div>
+                <div id="file-list" class="file-list"></div>
+                <button id="process-resumes-btn" class="btn btn-action" disabled>
+                    <span class="btn-text">Process Resumes</span>
+                    <div class="spinner"></div>
+                </button>
+            </section>
+
+            <section id="results-section" class="results-section hidden">
+                <div class="section-header">
+                    <h2 class="section-title">Filtered Results (<span id="results-count">0</span>)</h2>
+                </div>
+                <div id="results-container" class="results-container"></div>
+                <div id="pagination-container"></div>
+            </section>
+        </div>
+
+        <div id="filter-sidebar" class="skills-sidebar hidden">
+            <div class="skills-filter">
+                <h2 class="sidebar-title">Apply Filters</h2>
+                
+                <div class="filter-section">
+                    <h3>Experience (years)</h3>
+                    <div class="range-filter">
+                        <input type="number" id="min-exp" placeholder="Min" min="0" step="0.5" class="form-control">
+                        <span>-</span>
+                        <input type="number" id="max-exp" placeholder="Max" min="0" step="0.5" class="form-control">
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Minimum CGPA</h3>
+                    <input type="number" id="min-cgpa" placeholder="e.g., 7.5" min="0" max="10" step="0.1" class="form-control">
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Education Keyword</h3>
+                    <input type="text" id="education-req" placeholder="e.g., B.Tech, MCA" class="form-control">
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <h3>Skills</h3>
+                    </div>
+                    <!-- ADD SKILL IS BACK -->
+                    <div class="add-skill-container">
+                        <input type="text" id="add-skill-input" placeholder="Add custom skill..." class="form-control">
+                        <button id="add-skill-btn" class="btn btn-sm btn-primary">Add</button>
+                    </div>
+                    <div class="filter-actions">
+                        <button id="select-all-skills" class="btn btn-sm btn-outline">Select All</button>
+                        <button id="clear-all-skills" class="btn btn-sm btn-outline">Clear All</button>
+                    </div>
+                    <div class="skills-search">
+                        <input type="text" id="skills-search" placeholder="Search skills..." class="form-control">
+                    </div>
+                    <div id="skills-list" class="skills-list"></div>
+                </div>
+
+                <div class="filter-footer">
+                    <button id="apply-filter-btn" class="btn btn-primary">Apply All Filters</button>
+                    <div id="selected-skills-count" class="skills-count">0 skills selected</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

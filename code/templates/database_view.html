@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Resume Database - ResumeRank{% endblock %}
+
+{% block content %}
+<main class="static-page database-page">
+    <div class="content-wrapper-full">
+        <div class="database-header">
+            <h1>Resume Database</h1>
+            <p>A complete, searchable, and sortable view of all processed resumes from your current session.</p>
+            <input type="text" id="table-search" placeholder="Search this table..." class="form-control">
+        </div>
+
+        <div class="table-container">
+            <table class="data-table" id="resume-table">
+                <thead>
+                    <tr>
+                        <th data-sort="name">Name</th>
+                        <th data-sort="contact">Contact</th>
+                        <th data-sort="experience">Exp (yrs)</th>
+                        <th data-sort="cgpa">CGPA</th>
+                        <th data-sort="education">Education</th>
+                        <th data-sort="skills">Skills</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for filename, candidate in candidates %}
+                    <tr>
+                        <td data-label="Name">{{ candidate.name }}</td>
+                        <td data-label="Contact" class="contact-cell">
+                            {% if candidate.contact.email %}<div><strong>Email:</strong> <a href="mailto:{{ candidate.contact.email }}">{{ candidate.contact.email }}</a></div>{% endif %}
+                            {% if candidate.contact.phone %}<div><strong>Phone:</strong> {{ candidate.contact.phone }}</div>{% endif %}
+                            {% if candidate.contact.linkedin %}<div><strong>LinkedIn:</strong> <a href="https://{{ candidate.contact.linkedin }}" target="_blank">Profile</a></div>{% endif %}
+                            {% if candidate.contact.github %}<div><strong>GitHub:</strong> <a href="https://{{ candidate.contact.github }}" target="_blank">Profile</a></div>{% endif %}
+                        </td>
+                        <td data-label="Experience">{{ candidate.experience }}</td>
+                        <td data-label="CGPA">{{ candidate.cgpa if candidate.cgpa > 0 else 'N/A' }}</td>
+                        <td data-label="Education">{{ candidate.education }}</td>
+                        <td data-label="Skills" class="skills-cell">
+                            {% for skill in candidate.skills|sort %}
+                                <span class="skill-tag">{{ skill }}</span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('table-search');
+    const table = document.getElementById('resume-table');
+    const tableBody = table.querySelector('tbody');
+    const tableRows = Array.from(tableBody.querySelectorAll('tr'));
+    const headers = table.querySelectorAll('thead th[data-sort]');
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        tableRows.forEach(row => {
+            row.style.display = row.textContent.toLowerCase().includes(searchTerm) ? '' : 'none';
+        });
+    });
+
+    headers.forEach((header, index) => {
+        header.addEventListener('click', () => {
+            const isAscending = header.classList.contains('sort-asc');
+            const direction = isAscending ? -1 : 1;
+            const columnIndex = Array.from(header.parentNode.children).indexOf(header);
+
+            headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+            header.classList.toggle('sort-asc', !isAscending);
+            header.classList.toggle('sort-desc', isAscending);
+
+            const sortedRows = tableRows.sort((a, b) => {
+                let valA = a.children[columnIndex].textContent.trim().toLowerCase();
+                let valB = b.children[columnIndex].textContent.trim().toLowerCase();
+                
+                const numA = parseFloat(valA);
+                const numB = parseFloat(valB);
+
+                if (!isNaN(numA) && !isNaN(numB)) {
+                    if (numA < numB) return -1 * direction;
+                    if (numA > numB) return 1 * direction;
+                    return 0;
+                }
+                
+                return valA.localeCompare(valB) * direction;
+            });
+
+            sortedRows.forEach(row => tableBody.appendChild(row));
+        });
+    });
+});
+</script>
+{% endblock %}

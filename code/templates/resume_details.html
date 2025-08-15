@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block title %}Resume Details{% endblock %}
+{% block styles %}
+<style>
+    .content-wrapper {
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .resume-meta h2 {
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+    }
+
+    .resume-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    .stat {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+
+    .section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h3 {
+        color: #333;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.5rem;
+    }
+
+    .contact-info p {
+        margin: 0.5rem 0;
+        color: #666;
+    }
+
+    .matched-skills-grid, .all-skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .skill-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        transition: transform 0.2s ease;
+    }
+
+    .skill-item:hover {
+        transform: translateY(-2px);
+    }
+
+    .skill-item.matched {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+    }
+
+    .skill-item.unmatched {
+        background: #f8f9fa;
+        color: #666;
+        border: 1px solid #e9ecef;
+    }
+
+    .skill-count {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .text-preview {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .text-preview pre {
+        white-space: pre-wrap;
+        font-family: inherit;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #666;
+        margin: 0;
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .no-skills {
+        color: #999;
+        font-style: italic;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .resume-stats {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .matched-skills-grid, .all-skills-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .actions {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+{% block content %}
+<main>
+    <div class="content-wrapper">
+        <h2>Candidate Details</h2>
+        <div class="candidate-details">
+            <p><strong>Name:</strong> {{ candidate.name }}</p>
+            <p><strong>Email:</strong> {{ candidate.contact.email or 'N/A' }}</p>
+            <p><strong>Phone:</strong> {{ candidate.contact.phone or 'N/A' }}</p>
+            <p><strong>Experience:</strong> {{ candidate.experience }} years</p>
+            <p><strong>Education:</strong> {{ candidate.education }}</p>
+            <p><strong>CGPA:</strong> {{ candidate.cgpa }}</p>
+        </div>
+        <h3>Matched Skills</h3>
+        <ul>
+            {% for skill in matched_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+        <h3>All Skills Found</h3>
+        <ul>
+            {% for skill in all_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+        <form method="GET" action="{{ url_for('download_resume', filename=filename) }}">
+        <a href="{{ url_for('download_resume', filename=filename) }}" target="_blank" class="btn btn-primary">View Resume</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Rankings</a>
+    </div>
+
+</main>
+{% endblock %}
